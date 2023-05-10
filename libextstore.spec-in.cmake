@@ -115,14 +115,12 @@ install -m 644 extstore/motr/libextstore_motr.so %{buildroot}%{_libdir}
 %endif
 
 install -m 644 libextstore.pc  %{buildroot}%{_libdir}/pkgconfig
-install -m 644 kvsns.ini %{buildroot}%{_sysconfdir}/iosea.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%config(noreplace) %{_sysconfdir}/iosea.d/kvsns.ini
 
 %files devel
 %defattr(-,root,root)
