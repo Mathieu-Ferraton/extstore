@@ -42,16 +42,6 @@ if((NOT HAVE_INI_CONFIG) OR (NOT HAVE_INI_CONFIG_H))
       message(FATAL_ERROR "Cannot find ini_config")
 endif((NOT HAVE_INI_CONFIG) OR (NOT HAVE_INI_CONFIG_H))
 
-## Check for MOTR
-find_library(HAVE_MOTR motr)
-check_library_exists(
-        motr
-        m0_init
-        ""
-        HAVE_MOTR
-	)
-check_include_files("motr/config.h" HAVE_MOTR_H)
-
 ### Check for rados ###
 check_library_exists(
 	rados
@@ -65,7 +55,6 @@ if((NOT HAVE_LIBRADOS) OR (NOT HAVE_RADOS_H))
       message(STATUS "Cannot find librados")
 endif((NOT HAVE_LIBRADOS) OR (NOT HAVE_RADOS_H))
 
-
 ## Set BCOND for spec file management */
 if (HAVE_RADOS_H AND HAVE_LIBRADOS)
 	set(BCOND_RADOS "%bcond_without")
@@ -73,15 +62,7 @@ else (HAVE_RADOS_H AND HAVE_LIBRADOS)
 	set(BCOND_RADOS "%bcond_with")
 endif (HAVE_RADOS_H AND HAVE_LIBRADOS)
 
-if (HAVE_MOTR_H AND HAVE_MOTR)
-	set(BCOND_MOTR "%bcond_without")
-else (HAVE_MOTR_H AND HAVE_MOTR)
-	set(BCOND_MOTR "%bcond_with")
-endif (HAVE_MOTR_H AND HAVE_MOTR)
-
-if (HAVE_MOTR_H AND HAVE_MOTR)
-	set(HAVE_KVS TRUE)
-endif (HAVE_MOTR_H AND HAVE_MOTR)
+set(BCOND_MOTR "%bcond_with") # motr won't be used in iosea project
 
 add_subdirectory(extstore)
 
