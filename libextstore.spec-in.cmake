@@ -106,7 +106,7 @@ install -m 644 include/iosea/extstore.h  %{buildroot}%{_includedir}/iosea
 
 install -m 644 extstore/posix_store/libextstore_posix.so %{buildroot}%{_libdir}
 install -m 644 extstore/crud_cache/libextstore_crud_cache.so %{buildroot}%{_libdir}
-install -m 644 extstore/crud_cache/libobjstore_cmd.so %{buildroot}%{_libdir}
+install -m 644 extstore/crud_cache/libobjstore_grh.so %{buildroot}%{_libdir}
 %if %{with rados gnutls}
 install -m 644 extstore/rados/libextstore_rados.so %{buildroot}%{_libdir}
 %endif
@@ -132,7 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files crud_cache
 %{_libdir}/libextstore_crud_cache.so*
-%{_libdir}/libobjstore_cmd.so*
+%{_libdir}/libobjstore_grh.so*
 
 %if %{with motr}
 %files motr
